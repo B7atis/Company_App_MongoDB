@@ -2,10 +2,6 @@ const Employee = require('../employee.model');
 const expect = require('chai').expect;
 const mongoose = require('mongoose');
 
-after(() => {
-  mongoose.models = {};
-});
-
 describe('Employee', () => {
   it('should throw an error if no "firstName", "lastName", "department" arg', () => {
     const empl = new Employee({});
