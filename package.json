@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "nodemon server.js",
-    "test": "set NODE_ENV=production && mocha --colors \"./{,!(node_modules)/**/}*.test.js\"",
+    "test": "set NODE_ENV=test && mocha --colors \"./{,!(node_modules|client)/**/}*.test.js\"",
     "test:watch": "onchange --colors \"./**/*.js\" -i -k -- yarn test"
   },
   "dependencies": {

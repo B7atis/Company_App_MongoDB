@@ -21,7 +21,13 @@ app.use((req, res) => {
 })
 
 // connects our backend code with the database
-const dbURI = process.env.NODE_ENV === 'production' ? 'url to remote db' : 'mongodb://localhost:27017/companyDB';
+const NODE_ENV = process.env.NODE_ENV;
+let dbURI = '';
+
+if (NODE_ENV === 'production') dbURI = 'mongodb+srv://${process.env.DB_LOGIN}:${process.env.DB_PASSWORD}@cluster0.le7he.mongodb.net/CompanyDB?retryWrites=true&w=majority';
+else if (NODE_ENV === 'test') dbURI = 'mongodb://localhost:27017/companyDBtest';
+else dbURI = 'mongodb://localhost:27017/companyDB';
+
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 
